@@ -6,10 +6,10 @@ part 'country.g.dart';
 @JsonSerializable()
 class Country {
   Name? name;
+  String? subregion;
+  Flags? flags;
 
-  Country({
-    this.name,
-  });
+  Country({this.name, this.subregion, this.flags});
 
   factory Country.fromJson(Map<String, dynamic> json) =>
       _$CountryFromJson(json);
@@ -17,8 +17,21 @@ class Country {
   Map<String, dynamic> toJson() => _$CountryToJson(this);
 
   CountryEntity toEntity() {
-    return CountryEntity(
-      name: name,
-    );
+    return CountryEntity(name: name, subregion: subregion, flags: flags);
+  }
+}
+
+@JsonSerializable()
+class Flags {
+  final String? png;
+
+  Flags(this.png);
+
+  factory Flags.fromJson(Map<String, dynamic> name) => _$FlagsFromJson(name);
+
+  Map<String, dynamic> toJson() => _$FlagsToJson(this);
+
+  FlagsEntity toEntity() {
+    return FlagsEntity(png: png);
   }
 }

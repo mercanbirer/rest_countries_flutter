@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:rest_countries_flutter/src/data/models/country.dart';
+import 'package:rest_countries_flutter/src/data/models/name.dart';
 
 abstract class CountryState extends Equatable {
   const CountryState();

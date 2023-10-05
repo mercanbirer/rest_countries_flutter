@@ -6,7 +6,7 @@ class CountryUseCase {
 
   CountryUseCase(this._countryRepository);
 
-  Future<List<Country>> playerList() {
+  Future<List<Country>> countryList() {
     return _countryRepository.countryList();
   }
 }
