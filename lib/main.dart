@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rest_countries_flutter/src/injector.dart';
 import 'package:rest_countries_flutter/src/presentation/bloc/country/country_bloc.dart';
-import 'package:rest_countries_flutter/src/presentation/view/splash_screen.dart';
+import 'package:rest_countries_flutter/src/router/auto_router_custom.dart';
 
-void main() {
+Future<void> main() async {
   setup();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final autoRouter = AutoRouterCustom();
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +22,13 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => injector<CountryBloc>(),
           ),
         ],
-        child: MaterialApp(
-          title: 'Flutter Demo',
+        child: MaterialApp.router(
+          routerConfig: autoRouter.config(),
+          title: 'Countries',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const SplashScreen(),
         ));
   }
 }
