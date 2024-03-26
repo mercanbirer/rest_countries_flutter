@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rest_countries_flutter/src/data/models/country.dart';
 import 'package:rest_countries_flutter/src/presentation/bloc/country/country_bloc.dart';
-import 'package:rest_countries_flutter/src/presentation/bloc/country/country_state.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
@@ -16,6 +15,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late List<Country> listCountry = [];
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<CountryBloc>().add(const CountryFetched());
+  }
 
   @override
   Widget build(BuildContext context) {
